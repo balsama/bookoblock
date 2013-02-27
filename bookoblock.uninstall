@@ -1,0 +1,9 @@
+<?php
+/**
+* Implements hook_uninstall().
+*
+* Removes the depth variable/
+*/
+function bookoblock_uninstall() {
+  variable_del('bookoblock_depth');
+}
