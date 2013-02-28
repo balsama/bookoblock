@@ -23,5 +23,5 @@ Configuration
 
 The block configuration page (admin/structure/block/manage/bookoblock/book_outline/configure)
 allows you to set the desired depth of the Book Outline Block. Once you have
-set your desired Outline Depth, you can assign the block to any region as you
-would any other block.
+set your desired Outline Depth (or left the default), you can assign the block
+to any region as you would any other block.
