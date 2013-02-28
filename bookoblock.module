@@ -12,10 +12,10 @@ function bookoblock_block_info() {
 }
 
 /**
- * Define the contents and title of the block/
+ * Defines the contents and title of the block
  * Implementation of hook_block_view()
  *
- * Returns a block array with the current book's outline as the body and the top
+ * @return a block array with the current book's outline as the body and the top
  * level book as the title if the menu item viewed is a node and is part of a
  * book.
  *
@@ -45,6 +45,7 @@ function bookoblock_block_view() {
 /**
  * Implementation of hook_block_configure
  * Adds a depth select list on the block configuration page.
+ * @return block configuration form
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
@@ -67,7 +68,7 @@ function bookoblock_block_save($delta = '', $edit = array()) {
 
 /**
  * Checks to see if current node is part of a book.
- * Returns book array if it is part of a book, FALSE is not.
+ * @return book portion of the node array if it is part of a book, FALSE is not
  */
 function bookoblock_is_book_node() {
   if ((arg(0) == 'node') && (is_numeric(arg(1)))) {
