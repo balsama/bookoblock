@@ -1,6 +1,6 @@
 <?php
 /**
- * Define the Book Outline Block/
+ * Define the Book Outline Block
  * Implementation of hook_block_info()
  */
 function bookoblock_block_info() {
@@ -15,8 +15,8 @@ function bookoblock_block_info() {
  * Define the contents and title of the block/
  * Implementation of hook_block_view()
  *
- * Returns a block array with the current book's outline as the body and te top
- * level book as the title if the page being viewd is a node and is part of a
+ * Returns a block array with the current book's outline as the body and the top
+ * level book as the title if the menu item viewed is a node and is part of a
  * book.
  *
  * Returns NULL if the current menu item is not part of a book heirarchy.
@@ -24,11 +24,18 @@ function bookoblock_block_info() {
 function bookoblock_block_view() {
   if ($book = bookoblock_is_book_node()) {
     $max_depth = variable_get('bookoblock_depth', NULL);
-    $max_depth = ($max_depth == 0) ? NULL : $max_depth; // menu_tree_all_data() doesn't accept zero for depth; convert zero to NULL
-    $tree = menu_tree_all_data(book_menu_name($book['bid']), NULL, $max_depth);
+    $max_depth = ($max_depth == 0) ? NULL : ($max_depth + 1);
+    $path = 'node/' . $book['bid'];
+    $parent = menu_link_get_preferred($path, book_menu_name($book['bid']));
+    $parameters = array(
+      'only_active_trail' => FALSE,
+      'min_depth' => $parent['depth']+1,
+      'max_depth' => $max_depth,
+    );
+    $children = menu_build_tree($parent['menu_name'], $parameters);
     $book_name = (book_toc($book['bid'], 1));
-    $block['subject'] = $book_name[$book['p1']];
-    $block['content'] = menu_tree_output($tree);
+    $block['subject'] = l($book_name[$book['p1']], 'node/' . $book['bid']);
+    $block['content'] = menu_tree_output($children);
     return $block;
   }
   // If the current node isn't part of a book, just return nothing.
@@ -37,7 +44,6 @@ function bookoblock_block_view() {
 
 /**
  * Implementation of hook_block_configure
- *
  * Adds a depth select list on the block configuration page.
  */
 function bookoblock_block_configure() {
@@ -53,7 +59,6 @@ function bookoblock_block_configure() {
 
 /**
  * Implementation of hook_block_save
- *
  * Saves the depth value for the block.
  */
 function bookoblock_block_save($delta = '', $edit = array()) {
@@ -73,4 +78,5 @@ function bookoblock_is_book_node() {
   }
   return FALSE;
 }
+
 
