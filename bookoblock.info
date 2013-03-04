@@ -3,3 +3,4 @@ description = "Provides a block containing an outline of the current book."
 package = Other 
 core = 7.x
 dependencies[] = book
+dependencies[] = block
