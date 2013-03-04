@@ -1,19 +1,21 @@
 <?php
 /**
- * Define the Book Outline Block
- * Implementation of hook_block_info()
+ * Implements hook_block_info().
+ *
+ * Define the Book Outline Block.
  */
 function bookoblock_block_info() {
-  $block['book_outline'] = array (
+  $block['book_outline'] = array(
     'info' => 'Book Outline',
     'cache' => DRUPAL_CACHE_PER_PAGE,
-  );  
+  );
   return $block;
 }
 
 /**
- * Defines the contents and title of the block
- * Implementation of hook_block_view()
+ * Implements hook_block_view().
+ * 
+ * Defines the contents and title of the block.
  *
  * @return a block array with the current book's outline as the body and the top
  * level book as the title if the menu item viewed is a node and is part of a
@@ -24,7 +26,7 @@ function bookoblock_block_info() {
 function bookoblock_block_view() {
   if ($book = bookoblock_is_book_node()) {
     // menu_build_tree() doesn't accept zero for depth, so we convert that to
-    // NULL and add 1 if it's not zero to account for the first (skipped) level
+    // NULL and add 1 if it's not 0 to account for the first (skipped) level.
     $max_depth = variable_get('bookoblock_depth', NULL);
     $max_depth = ($max_depth == 0) ? NULL : ($max_depth + 1);
     
@@ -51,9 +53,10 @@ function bookoblock_block_view() {
 }
 
 /**
- * Implementation of hook_block_configure
+ * Implements hook_block_configure()
+ *
  * Adds a depth select list on the block configuration page.
- * @return block configuration form
+ * @return block configuration form.
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
@@ -67,7 +70,8 @@ function bookoblock_block_configure() {
 }
 
 /**
- * Implementation of hook_block_save
+ * Implements hook_block_save()
+ *
  * Saves the depth value for the block.
  */
 function bookoblock_block_save($delta = '', $edit = array()) {
@@ -76,7 +80,8 @@ function bookoblock_block_save($delta = '', $edit = array()) {
 
 /**
  * Checks to see if current node is part of a book.
- * @return book portion of the node array if it is part of a book, FALSE is not
+ *
+ * @return book portion of the node array if it is part of a book, FALSE is not.
  */
 function bookoblock_is_book_node() {
   if ((arg(0) == 'node') && (is_numeric(arg(1)))) {
@@ -87,5 +92,4 @@ function bookoblock_is_book_node() {
   }
   return FALSE;
 }
-
 
