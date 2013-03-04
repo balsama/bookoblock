@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * @file
+ * Provides a single block that displays the current book's ToC when viewing a
+ * menu item that is part of a book.
+ */
+
+/**
  * Implements hook_block_info().
  *
  * Define the Book Outline Block.

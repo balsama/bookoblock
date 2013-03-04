@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Removes the depth variable when the module is uninstalled.
+ */
+
+/**
  * Implements hook_uninstall().
  *
  * Removes the depth variable/
