@@ -17,7 +17,8 @@ function bookoblock_block_info() {
  * 
  * Defines the contents and title of the block.
  *
- * @return a block array with the current book's outline as the body and the top
+ * @return
+ * a block array with the current book's outline as the body and the top
  * level book as the title if the menu item viewed is a node and is part of a
  * book.
  *
@@ -29,8 +30,8 @@ function bookoblock_block_view() {
     // NULL and add 1 if it's not 0 to account for the first (skipped) level.
     $max_depth = variable_get('bookoblock_depth', NULL);
     $max_depth = ($max_depth == 0) ? NULL : ($max_depth + 1);
-    
-    // Vars and params for the menu_build_tree() function
+
+    // Vars and params for the menu_build_tree() function.
     $path = 'node/' . $book['bid'];
     $parent = menu_link_get_preferred($path, book_menu_name($book['bid']));
     $parameters = array(
@@ -39,11 +40,11 @@ function bookoblock_block_view() {
       'max_depth' => $max_depth,
     );
 
-    // Build the tree and block title
+    // Build the tree and block title.
     $children = menu_build_tree($parent['menu_name'], $parameters);
     $book_name = (book_toc($book['bid'], 1));
 
-    // Build and return the $block array
+    // Build and return the $block array.
     $block['subject'] = l($book_name[$book['p1']], 'node/' . $book['bid']);
     $block['content'] = menu_tree_output($children);
     return $block;
@@ -56,7 +57,9 @@ function bookoblock_block_view() {
  * Implements hook_block_configure()
  *
  * Adds a depth select list on the block configuration page.
- * @return block configuration form.
+ * 
+ * @return
+ * block configuration form.
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
