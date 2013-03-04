@@ -22,9 +22,7 @@ function bookoblock_block_info() {
 /**
  * Implements hook_block_view().
  * 
- * Defines the contents and title of the block.
- *
- * @return
+ * @return array
  *   a block array with the current book's outline as the body and the top
  *   level book as the title if the menu item viewed is a node and is part of a
  *   book.
@@ -43,7 +41,7 @@ function bookoblock_block_view() {
     $parent = menu_link_get_preferred($path, book_menu_name($book['bid']));
     $parameters = array(
       'only_active_trail' => FALSE,
-      'min_depth' => $parent['depth']+1,
+      'min_depth' => $parent['depth'] + 1,
       'max_depth' => $max_depth,
     );
 
@@ -63,9 +61,9 @@ function bookoblock_block_view() {
 /**
  * Implements hook_block_configure().
  *
- * Adds a depth select list on the block configuration page.
+ * Adds a book depth select list.
  * 
- * @return
+ * @return array
  *   block configuration form.
  */
 function bookoblock_block_configure() {
@@ -91,7 +89,7 @@ function bookoblock_block_save($delta = '', $edit = array()) {
 /**
  * Checks to see if current node is part of a book.
  *
- * @return
+ * @return array
  *   book portion of the node array if it is part of a book, FALSE if not.
  */
 function bookoblock_is_book_node() {
@@ -103,4 +101,4 @@ function bookoblock_is_book_node() {
   }
   return FALSE;
 }
-
+ 
