@@ -59,7 +59,7 @@ function bookoblock_block_view() {
  * Implements hook_block_configure().
  *
  * @return array
- *   block configuration form with depth select list.
+ *   Configuration form with depth select list.
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
