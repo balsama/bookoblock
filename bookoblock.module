@@ -20,11 +20,10 @@ function bookoblock_block_info() {
 
 /**
  * Implements hook_block_view().
- * 
- * @return array
- *   a block array with the current book's outline as the body and the top
- *   level book as the title if the menu item viewed is a node and is part of a
- *   book. NULL if the current menu item is not part of a book heirarchy.
+ *
+ * Returns a block array with the current book's outline as the body and the top
+ * level book as the title if the menu item viewed is a node and is part of a
+ * book. NULL if the current menu item is not part of a book heirarchy.
  */
 function bookoblock_block_view() {
   if ($book = bookoblock_is_book_node()) {
@@ -58,8 +57,7 @@ function bookoblock_block_view() {
 /**
  * Implements hook_block_configure().
  *
- * @return array
- *   Configuration form with depth select list.
+ * Returns configuration form with depth select list.
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
@@ -96,4 +94,3 @@ function bookoblock_is_book_node() {
   }
   return FALSE;
 }
-
