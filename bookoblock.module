@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Provides a single block that displays the current book's ToC when viewing a
