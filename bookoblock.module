@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Implements hook_block_info().
  *
@@ -18,9 +19,9 @@ function bookoblock_block_info() {
  * Defines the contents and title of the block.
  *
  * @return
- * a block array with the current book's outline as the body and the top
- * level book as the title if the menu item viewed is a node and is part of a
- * book.
+ *   a block array with the current book's outline as the body and the top
+ *   level book as the title if the menu item viewed is a node and is part of a
+ *   book.
  *
  * Returns NULL if the current menu item is not part of a book heirarchy.
  */
@@ -54,17 +55,17 @@ function bookoblock_block_view() {
 }
 
 /**
- * Implements hook_block_configure()
+ * Implements hook_block_configure().
  *
  * Adds a depth select list on the block configuration page.
  * 
  * @return
- * block configuration form.
+ *   block configuration form.
  */
 function bookoblock_block_configure() {
   $form['bookoblock_depth'] = array(
     '#type' => 'select',
-    '#options' => drupal_map_assoc(array(0,1,2,3,4,5,6,7,8,9)),
+    '#options' => drupal_map_assoc(array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)),
     '#title' => t('Book Outline Block Depth'),
     '#description' => t('Select the maximum depth of the Book Outline Block. Select "0" for no limit.'),
     '#default_value' => variable_get('bookoblock_depth', 0),
@@ -73,7 +74,7 @@ function bookoblock_block_configure() {
 }
 
 /**
- * Implements hook_block_save()
+ * Implements hook_block_save().
  *
  * Saves the depth value for the block.
  */
@@ -84,7 +85,8 @@ function bookoblock_block_save($delta = '', $edit = array()) {
 /**
  * Checks to see if current node is part of a book.
  *
- * @return book portion of the node array if it is part of a book, FALSE is not.
+ * @return
+ *   book portion of the node array if it is part of a book, FALSE if not.
  */
 function bookoblock_is_book_node() {
   if ((arg(0) == 'node') && (is_numeric(arg(1)))) {
